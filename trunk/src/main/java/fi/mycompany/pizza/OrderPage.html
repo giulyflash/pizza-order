@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html>
+    <head>
+        <title>Pizzaa!</title>
+    </head>
+    <body>
+        <h1>Pizzatilaus!</h1>
+        <table wicket:id="container">
+            <thead>
+                <tr>
+                    <th>Tilaaja</th><th>Tilaus</th><th>Hinta</th>
+                </tr>
+            </thead>
+            <tr wicket:id="rows">
+                <td wicket:id="orderer">Toni</td>
+                <td wicket:id="content"></td>
+                <td wicket:id="price"></td>
+                <td><a wicket:id="removeLink">Poista</a></td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th wicket:id="total"></th>
+                </tr>
+            </tfoot>
+        </table>
+        <form wicket:id="newRow">
+            <table>
+                <tr>
+                    <td>Tilaaja</td><td ><input wicket:id="orderer" /></td>
+                </tr>
+                <tr>
+                    <td>Tilaus</td><td ><input wicket:id="content" /></td>
+                </tr>
+                <tr>
+                    <td>Hinta</td><td ><input wicket:id="price"/></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Ok" /></td>
+                </tr>
+            </table>
+        </form>
+        <div wicket:id="chat">
+
+        </div>
+    </body>
+</html>
+

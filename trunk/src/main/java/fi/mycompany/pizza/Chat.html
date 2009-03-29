@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:wicket>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+        <title>Chat</title>
+    </head>
+    <body>
+        <wicket:panel>
+            <div wicket:id="chatContainer">
+                <p wicket:id="messages">
+                    <span wicket:id="username" style="color: blue;"></span>: <span wicket:id="message"></span>
+                </p>
+            </div>
+            <form wicket:id="newMessageForm">
+                Käyttäjänimi:<input wicket:id="username"><br />
+                Viesti:<input wicket:id="message"><br />
+                <button wicket:id="submit">Lähetä</button>
+            </form>
+        </wicket:panel>
+    </body>
+</html>
