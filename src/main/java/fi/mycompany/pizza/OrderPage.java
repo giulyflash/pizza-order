@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.AjaxSelfUpdatingTimerBehavior;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -86,14 +87,8 @@ public class OrderPage extends WebPage {
                 return total;
             }
         }));
-        tableContainer.add(new AbstractAjaxTimerBehavior(Duration.seconds(2)) {
+        tableContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(2)));
 
-            @Override
-            protected void onTimer(AjaxRequestTarget target) {
-                target.addComponent(tableContainer);
-
-            }
-        });
         add(tableContainer);
         add(new OrderRowForm("newRow"));
         add(new Chat("chat") {
