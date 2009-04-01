@@ -1,5 +1,6 @@
-package fi.mycompany.pizza;
+package fi.mycompany.pizza.pages;
 
+import fi.mycompany.pizza.*;
 import fi.mycompany.pizza.model.Order;
 import fi.mycompany.pizza.model.OrderRow;
 import java.util.LinkedList;
