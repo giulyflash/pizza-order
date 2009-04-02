@@ -1,6 +1,6 @@
 package com.mycompany.PizzaApp;
 
-import fi.mycompany.pizza.OrderPage;
+import fi.mycompany.pizza.pages.OrderPage;
 import fi.mycompany.pizza.PizzaApplication;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;

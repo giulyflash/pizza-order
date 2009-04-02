@@ -19,6 +19,7 @@ package fi.mycompany.pizza.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +28,9 @@ import java.util.List;
  */
 public class Order implements Serializable{
     private List<OrderRow> rows;
+    private boolean active;
+    private Date created;
+    private int identifier;
 
     /**
      * @return the rows
@@ -43,5 +47,47 @@ public class Order implements Serializable{
      */
     public void setRows(List<OrderRow> rows) {
         this.rows = rows;
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    /**
+     * @return the created
+     */
+    public Date getCreated() {
+        return created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    /**
+     * @return the identifier
+     */
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    /**
+     * @param identifier the identifier to set
+     */
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
     }
 }
