@@ -1,11 +1,16 @@
 package fi.mycompany.pizza;
 
+import fi.mycompany.pizza.components.chat.Message;
 import fi.mycompany.pizza.pages.OrderPage;
 import fi.mycompany.pizza.model.Order;
 import fi.mycompany.pizza.model.OrderRow;
+import fi.mycompany.pizza.pages.HomePage;
+import fi.mycompany.pizza.service.PizzaService;
+import fi.mycompany.pizza.service.impl.PizzaServiceImpl;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import org.apache.wicket.Application;
+import org.apache.wicket.Page;
 import org.apache.wicket.Request;
 import org.apache.wicket.Response;
 import org.apache.wicket.Session;
@@ -21,6 +26,7 @@ public class PizzaApplication extends WebApplication
 
     private static Order order;
     private static LinkedList<Message> messageList;
+    private static PizzaService pizzaService;
 
     public static Order getOrder(){
         if(order == null){
@@ -36,6 +42,13 @@ public class PizzaApplication extends WebApplication
         return messageList;
     }
 
+    /**
+     * @return the pizzaService
+     */
+    public static PizzaService getPizzaService() {
+        return pizzaService;
+    }
+
     public void clearOrder(){
         getOrder().setRows(new ArrayList<OrderRow>());
     }
@@ -44,6 +57,7 @@ public class PizzaApplication extends WebApplication
      */
 	public PizzaApplication()
 	{
+        pizzaService = new PizzaServiceImpl();
 	}
 
     public static PizzaApplication get(){
@@ -52,10 +66,9 @@ public class PizzaApplication extends WebApplication
 	/**
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
-	public Class<OrderPage> getHomePage()
+	public Class<? extends Page> getHomePage()
 	{
-
-		return OrderPage.class;
+		return HomePage.class;
 	}
 
     @Override
@@ -66,7 +79,7 @@ public class PizzaApplication extends WebApplication
     @Override
     protected void init() {
         mountBookmarkablePage("tilaus", OrderPage.class);
-
+        mountBookmarkablePage("index", HomePage.class);
     }
 
 

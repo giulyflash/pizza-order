@@ -16,20 +16,46 @@
  */
 
 package fi.mycompany.pizza.pages;
+import fi.mycompany.pizza.PizzaApplication;
+import fi.mycompany.pizza.components.OrderList;
+import fi.mycompany.pizza.model.Order;
+import fi.mycompany.pizza.service.PizzaService;
+import java.util.List;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.ajax.markup.html.form.AjaxFallbackButton;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 
 /**
  *
  * @author Toni
  */
 public final class HomePage extends WebPage {
-    public HomePage() {
-        super ();
+
+    protected PizzaService getPizzaService(){
+        return PizzaApplication.getPizzaService();
     }
 
-    public HomePage(PageParameters params) {
-        //TODO:  process page parameters
+    public HomePage() {
+        super ();
+        add(new OrderList("openOrderList") {
+
+            @Override
+            protected List<Order> getOrders() {
+                return getPizzaService().getActiveOrders();
+            }
+        });
+        add(new OrderList("oldOrderList") {
+
+            @Override
+            protected List<Order> getOrders() {
+                return getPizzaService().getOrderHistory();
+            }
+        });
+        add(new BookmarkablePageLink("newOrderButton", OrderPage.class));
+
     }
 }
 

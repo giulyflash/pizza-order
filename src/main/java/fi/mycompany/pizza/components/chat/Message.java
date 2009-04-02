@@ -15,7 +15,7 @@
  *  under the License.
  */
 
-package fi.mycompany.pizza;
+package fi.mycompany.pizza.components.chat;
 
 import java.io.Serializable;
 
