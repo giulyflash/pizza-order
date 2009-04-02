@@ -1,5 +1,7 @@
 package fi.mycompany.pizza.pages;
 
+import fi.mycompany.pizza.components.chat.Message;
+import fi.mycompany.pizza.components.chat.Chat;
 import fi.mycompany.pizza.*;
 import fi.mycompany.pizza.model.Order;
 import fi.mycompany.pizza.model.OrderRow;

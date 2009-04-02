@@ -15,7 +15,7 @@
  *  under the License.
  */
 
-package fi.mycompany.pizza;
+package fi.mycompany.pizza.components.chat;
 import java.util.LinkedList;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
