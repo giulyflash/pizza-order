@@ -28,13 +28,6 @@ public class PizzaApplication extends WebApplication
     private static LinkedList<Message> messageList;
     private static PizzaService pizzaService;
 
-    public static Order getOrder(){
-        if(order == null){
-            order = new Order();
-        }
-        return order;
-    }
-
     public static LinkedList<Message> getMessageList(){
         if(messageList == null){
             messageList = new LinkedList<Message>();
@@ -47,10 +40,6 @@ public class PizzaApplication extends WebApplication
      */
     public static PizzaService getPizzaService() {
         return pizzaService;
-    }
-
-    public void clearOrder(){
-        getOrder().setRows(new ArrayList<OrderRow>());
     }
     /**
      * Constructor

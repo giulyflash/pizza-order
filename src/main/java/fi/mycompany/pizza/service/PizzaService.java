@@ -28,4 +28,5 @@ public interface PizzaService {
     List<Order> getActiveOrders();
     List<Order> getOrderHistory();
     Order openOrder();
+    Order getOrder(int identifier);
 }
