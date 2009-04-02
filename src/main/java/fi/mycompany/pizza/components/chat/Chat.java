@@ -86,9 +86,8 @@ public abstract class Chat extends Panel {
         public NewMessageForm(String id, final Component container) {
             super(id);
             setModel(new CompoundPropertyModel(new Message()));
-            add(new TextField("username"));
-            add(new TextField("message"));
-            add(new AjaxButton("submit", this) {
+
+            AjaxButton submitButton = new AjaxButton("submit", this) {
 
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
@@ -102,7 +101,11 @@ public abstract class Chat extends Panel {
                     message.setUsername(NewMessageForm.this.getModelObject().getUsername());
                     NewMessageForm.this.setModel(new CompoundPropertyModel(message));
                 }
-            });
+            };
+            setDefaultButton(submitButton);
+            add(new TextField("username"));
+            add(new TextField("message"));
+            add(submitButton);
         }
 
         @Override

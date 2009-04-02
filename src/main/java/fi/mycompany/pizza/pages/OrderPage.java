@@ -87,7 +87,7 @@ public class OrderPage extends WebPage {
                         }
                         
                     }
-                });
+                }.setVisible(getOrder().isActive()));
             }
 
         };
@@ -109,7 +109,7 @@ public class OrderPage extends WebPage {
         tableContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(2)));
 
         add(tableContainer);
-        add(new OrderRowForm("newRow", Collections.singletonList(tableContainer)));
+        add(new OrderRowForm("newRow", Collections.singletonList(tableContainer)).setVisible(getOrder().isActive()));
         add(new Chat("chat") {
 
             @Override
@@ -125,7 +125,7 @@ public class OrderPage extends WebPage {
                 getOrder().setActive(false);
                 setResponsePage(OrderPage.class, new PageParameters("id="+getOrder().getIdentifier()));
             }
-        });
+        }.setVisible(getOrder().isActive()));
     }
 
     
