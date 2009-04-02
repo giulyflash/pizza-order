@@ -14,8 +14,8 @@
  *  limitations under the License.
  *  under the License.
  */
-
 package fi.mycompany.pizza.components.chat;
+
 import java.util.LinkedList;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -40,20 +40,21 @@ import org.apache.wicket.util.time.Duration;
  * @author Toni
  */
 public abstract class Chat extends Panel {
+
     private int maxMessages = 10;
 
-
-
     public Chat(String id) {
-        super (id);
+        super(id);
         WebMarkupContainer chatContainer = new WebMarkupContainer("chatContainer");
-        IModel model = new LoadableDetachableModel() {            
+        IModel model = new LoadableDetachableModel() {
+
             @Override
             protected Object load() {
                 return getMessageList();
             }
         };
         ListView<Message> messageView = new ListView<Message>("messages", model) {
+
             @Override
             protected void populateItem(ListItem<Message> item) {
                 Message message = item.getModelObject();
@@ -65,13 +66,12 @@ public abstract class Chat extends Panel {
         chatContainer.add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1)));
         chatContainer.setOutputMarkupId(true);
         add(chatContainer);
-        add(new NewMessageForm("newMessageForm", chatContainer).setOutputMarkupId(true) );
+        add(new NewMessageForm("newMessageForm", chatContainer).setOutputMarkupId(true));
     }
 
     protected abstract LinkedList<Message> getMessageList();
 
-    protected void onMessageListChange(){
-        
+    protected void onMessageListChange() {
     }
 
     /**
@@ -93,24 +93,20 @@ public abstract class Chat extends Panel {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     target.addComponent(container);
-                    target.addComponent(this);
-                    onSubmit();
-                    form.clearInput();
+                    target.addComponent(NewMessageForm.this);
+                    getMessageList().addLast(NewMessageForm.this.getModelObject());
+                    while (getMessageList().size() > maxMessages) {
+                        getMessageList().removeFirst();
+                    }
+                    Message message = new Message();
+                    message.setUsername(NewMessageForm.this.getModelObject().getUsername());
+                    NewMessageForm.this.setModel(new CompoundPropertyModel(message));
                 }
             });
         }
 
         @Override
         protected void onSubmit() {
-            getMessageList().addLast(getModelObject());
-            while(getMessageList().size() > maxMessages){
-                getMessageList().removeFirst();
-            }
-            Message message = new Message();
-            message.setUsername(getModelObject().getUsername());
-            setModel(new CompoundPropertyModel(message));
         }
-
     }
-    
 }

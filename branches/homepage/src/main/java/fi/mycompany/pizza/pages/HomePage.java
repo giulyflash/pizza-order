@@ -54,7 +54,15 @@ public final class HomePage extends WebPage {
                 return getPizzaService().getOrderHistory();
             }
         });
-        add(new BookmarkablePageLink("newOrderButton", OrderPage.class));
+        add(new Link("newOrderButton") {
+
+            @Override
+            public void onClick() {
+                Order order = getPizzaService().openOrder();
+                setResponsePage(OrderPage.class, new PageParameters("id="+order.getIdentifier()));
+
+            }
+        });
 
     }
 }

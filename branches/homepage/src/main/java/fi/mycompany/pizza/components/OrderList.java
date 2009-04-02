@@ -17,8 +17,12 @@
 
 package fi.mycompany.pizza.components;
 import fi.mycompany.pizza.model.Order;
+import fi.mycompany.pizza.pages.OrderPage;
 import java.util.List;
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -36,7 +40,9 @@ public abstract class OrderList extends Panel {
             @Override
             protected void populateItem(ListItem<Order> item) {
                 Order order = item.getModelObject();
-                item.add(new Label("created", new PropertyModel(order, "created")));
+                Link link = new BookmarkablePageLink("openOrderLink", OrderPage.class, new PageParameters("id="+order.getIdentifier()));
+                item.add(link);
+                link.add(new Label("created", new PropertyModel(order, "created")));
             }
         });
     }
