@@ -16,10 +16,13 @@
  */
 
 package fi.mycompany.pizza.pages;
+import fi.mycompany.pizza.components.chat.Chat;
+import fi.mycompany.pizza.components.chat.Message;
 import fi.mycompany.pizza.PizzaApplication;
 import fi.mycompany.pizza.components.OrderList;
 import fi.mycompany.pizza.model.Order;
 import fi.mycompany.pizza.service.PizzaService;
+import java.util.LinkedList;
 import java.util.List;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.markup.html.form.AjaxFallbackButton;
@@ -63,7 +66,13 @@ public final class HomePage extends WebPage {
 
             }
         });
+        add(new Chat("chat") {
 
+            @Override
+            protected LinkedList<Message> getMessageList() {
+                return PizzaApplication.getMessageList();
+            }
+        });
     }
 }
 
