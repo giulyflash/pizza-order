@@ -1,0 +1,3 @@
+This is a software for making pizza orders and keeping up on who owes who. The UI will be very basic, but uses ajax. No registrations of any kind. Just type your name when you are ordering. If you don't have money on hand and have to make someone else pay for your pizza, you can mark it in the software so you know who owes who. No authentication, so you really have to trust everyone using the software.
+
+When everyone has made their order, it can be printed, or sent  in an email to anyone. History of orders is also kept.
